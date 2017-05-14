@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './Form.css';
 
 class Form extends Component {
 	render() {
 		return (
-			<form>
+			<form className="Form">
 				<input type="radio" name="gender" value="m" /> male
 				<input type="radio" name="gender" value="f" /> female
 

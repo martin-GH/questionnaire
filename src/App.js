@@ -1,26 +1,48 @@
+import { observer } from 'mobx-react';
 import React, { Component } from 'react';
-import Form from './components/form/Form';
-import Page from './components/page/Page';
-import Question from './components/question/Question';
-import Store from './stores/Store';
+import Header from './components/header/Header';
+import Step from './components/step/Step';
 
+@observer
 class App extends Component {
-	// const store = this
+	constructor() {
+		super();
+
+		this.onNext = this.onNext.bind(this);
+	}
+
+	onNext() {
+		this.props.store.stepIndex++;
+	}
 
 	render() {
+
+		/*const steps = this.props.store.steps.map((step, i) => {
+			switch(step.type) {
+				case 'page':
+					return (
+						<Page key={step.uuid} data={step} />
+				);
+
+				case 'form':
+					return (
+						<Form key={step.uuid} data={step} />
+					);
+
+				case 'question':
+					return (
+						<Question key={step.uuid} data={step} />
+					);
+			}
+		});*/
+
 		return (
 			<div className="questionnaire">
-				<div className="header">
-					<h2>Hello, World!</h2>
-				</div>
-				<div className="step-container">
-					<Form/>
-					<Page/>
-					<Question/>
-				</div>
-				<div className="footer">
-					Footer
-				</div>
+				<Header/>
+				<Step
+					onNext={this.onNext}
+					currentStep={this.props.store.stepIndex}
+				/>
 			</div>
 		);
 	}

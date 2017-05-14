@@ -1,19 +1,31 @@
-import { mobx, observable } from 'mobx';
+import { observable } from 'mobx';
 import fetch from 'isomorphic-fetch';
 
 class Store {
-	@observable fetched = false;
+	@observable steps = [];
+	@observable stepIndex = 0;
+	@observable isLoading = true;
 
-	/*constructor() {
-		mobx.autorun(() => console.log(this.report));
-	}*/
+	constructor() {
+		this.loadQuestionnaire();
+	}
 
-	fetch() {
-		fetch('http://localhost:3000/mock.json')
+	loadQuestionnaire() {
+		this.isLoading = true;
+
+		fetch('http://localhost:8080/mock.json')
+			.then(this.parseJson)
 			.then((data) => {
-				console.log(data);
-			})
-			.catch(() => this.fetched = false)
+				data.steps.forEach((step) => {
+					this.steps.push(step);
+				});
+
+				this.isLoading = false;
+			});
+	}
+
+	parseJson(response) {
+		return response.json();
 	}
 }
 
