@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './Page.css';
 
 class Page extends Component {
+	createMarkup() {
+		return {__html: this.props.body};
+	}
+
 	render() {
 		return (
-			<div className="Page">
-				<h2>Static Page</h2>
-				<p>Some text goes here ...</p>
-			</div>
+			<div className="Page" dangerouslySetInnerHTML={this.createMarkup()}></div>
 		);
 	}
 }

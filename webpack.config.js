@@ -51,6 +51,12 @@ module.exports = {
 				use: ['babel-loader',],
 				exclude: /node_modules/
 			},
+
+			{
+				test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+				loader: 'file?name=fonts/[name].[hash].[ext]?'
+			},
+
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader?modules',],

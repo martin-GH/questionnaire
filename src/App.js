@@ -1,48 +1,49 @@
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
+import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
 import Step from './components/step/Step';
+
+// import 'bootstrap/dist/css/bootstrap.css';
 
 @observer
 class App extends Component {
 	constructor() {
 		super();
 
+		this.onPrev = this.onPrev.bind(this);
 		this.onNext = this.onNext.bind(this);
 	}
 
+	onPrev() {
+		if (this.props.store.stepIndex > 0) {
+			this.props.store.stepIndex--;
+		}
+	}
+
 	onNext() {
-		this.props.store.stepIndex++;
+		if (this.props.store.stepIndex < this.props.store.maxIndex) {
+			this.props.store.stepIndex++;
+		}
 	}
 
 	render() {
+		let content = <Loader/>;
 
-		/*const steps = this.props.store.steps.map((step, i) => {
-			switch(step.type) {
-				case 'page':
-					return (
-						<Page key={step.uuid} data={step} />
-				);
-
-				case 'form':
-					return (
-						<Form key={step.uuid} data={step} />
-					);
-
-				case 'question':
-					return (
-						<Question key={step.uuid} data={step} />
-					);
-			}
-		});*/
+		if (this.props.store.step) {
+			content = (
+				<Step
+					data={this.props.store.step}
+					onPrev={this.onPrev}
+					onNext={this.onNext}
+				/>
+			);
+		}
 
 		return (
 			<div className="questionnaire">
 				<Header/>
-				<Step
-					onNext={this.onNext}
-					currentStep={this.props.store.stepIndex}
-				/>
+				{content}
 			</div>
 		);
 	}

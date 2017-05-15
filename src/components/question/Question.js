@@ -8,8 +8,8 @@ class Question extends Component {
 
 		return (
 			<div className="Question">
-				<h1>Question?</h1>
-				<p>Subtitle ...</p>
+				<h1>{this.props.title}</h1>
+				<p>{this.props.subtitle}</p>
 				{answers}
 			</div>
 		);

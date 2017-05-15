@@ -1,9 +1,10 @@
-import { observable } from 'mobx';
+import mobx, { autorun, computed, observable } from 'mobx';
 import fetch from 'isomorphic-fetch';
 
 class Store {
 	@observable steps = [];
 	@observable stepIndex = 0;
+	@observable maxIndex = 0;
 	@observable isLoading = true;
 
 	constructor() {
@@ -20,12 +21,21 @@ class Store {
 					this.steps.push(step);
 				});
 
+				this.maxIndex = data.steps.length - 1;
 				this.isLoading = false;
 			});
 	}
 
 	parseJson(response) {
 		return response.json();
+	}
+
+	@computed get step() {
+		if (!this.steps.length) {
+			return null;
+		}
+
+		return this.steps[this.stepIndex];
 	}
 }
 
