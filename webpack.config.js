@@ -1,6 +1,7 @@
 const {resolve} = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	context: resolve(__dirname, 'src'),
@@ -62,6 +63,10 @@ module.exports = {
 			title: '',
 			template: 'public/index.html',
 		}),
+
+		new CopyWebpackPlugin([
+			{from: 'mock'}
+		]),
 
 		new webpack.HotModuleReplacementPlugin(),
 		// enable HMR globally
