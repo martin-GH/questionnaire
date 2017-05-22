@@ -25,13 +25,15 @@ class Step extends Component {
 
 	render() {
 		return (
-			<div className="Step">
-				<div className="content">
-					{this.getStepByType()}
+			<div>
+				<div className="row">
+					<div className="col-xs-12">
+						{this.getStepByType()}
+					</div>
 				</div>
-				<div className="footer">
-					<button onClick={this.props.onPrev}>Prev</button>
-					<button onClick={this.props.onNext}>Next</button>
+				<div className="row">
+					<div className="col-sm-6 col-xs-12"><button className="btn btn-block btn-md btn-primary" onClick={this.props.onPrev}>Prev</button></div>
+					<div className="col-sm-6 col-xs-12"><button className="btn btn-block btn-md btn-primary" onClick={this.props.onNext}>Next</button></div>
 				</div>
 			</div>
 		);

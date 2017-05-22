@@ -5,6 +5,8 @@ import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import Store from './stores/Store';
 
+import './style/app.scss';
+
 const store = new Store();
 
 const render = (Component) => {

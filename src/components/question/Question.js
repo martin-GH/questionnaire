@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import Answer from './answer/Answer';
-import './Question.css';
+//import './Question.scss';
 
 class Question extends Component {
 	render() {
-		const answers = <Answer />
-
 		return (
 			<div className="Question">
-				<h1>{this.props.title}</h1>
-				<p>{this.props.subtitle}</p>
-				{answers}
+				<div className="row">
+					<div className="col-xs-12">
+						<h1>{this.props.title}</h1>
+						<p>{this.props.subtitle}</p>
+					</div>
+				</div>
+				<div className="row">
+					<Answer num="1"/>
+					<Answer num="2"/>
+					<Answer num="3"/>
+					<Answer num="4"/>
+					<Answer num="5"/>
+				</div>
 			</div>
 		);
 	}

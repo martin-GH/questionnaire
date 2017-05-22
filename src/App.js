@@ -4,8 +4,6 @@ import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
 import Step from './components/step/Step';
 
-// import 'bootstrap/dist/css/bootstrap.css';
-
 @observer
 class App extends Component {
 	constructor() {
@@ -41,7 +39,7 @@ class App extends Component {
 		}
 
 		return (
-			<div className="questionnaire">
+			<div className="container-fluid">
 				<Header/>
 				{content}
 			</div>
